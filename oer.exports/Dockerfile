@@ -64,29 +64,14 @@ RUN apt-get -y install tk-dev
 RUN apt-get -y install libffi-dev
 RUN apt-get -y install liblzma-dev
 
-FROM install-python-libs as install-pyenv
+FROM install-python-libs as install-python
 WORKDIR /
-RUN curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-RUN echo 'if [ -f ~/.bashrc ]; then . ~/.bashrc; fi' >> ~/.bash_profile
-RUN printf '%s\n' 4 a 'export PATH="/root/.pyenv/bin:$PATH"' . wq | ed ~/.bashrc
-RUN printf '%s\n' 5 a 'eval "$(pyenv init -)"' . wq | ed ~/.bashrc
-RUN printf '%s\n' 6 a 'eval "$(pyenv virtualenv-init -)"' . wq | ed ~/.bashrc
-#RUN echo 'eval "$(pyenv init -)"'               >> ~/.bashrc
-#RUN echo 'eval "$(pyenv virtualenv-init -)"'    >> ~/.bashrc
-RUN ["/bin/bash", "--login", "-c", "pyenv update"]
+RUN apt-get -y install python2.7-minimal python-pip
 
-FROM install-pyenv as install-python
-WORKDIR /
-RUN ["/bin/bash", "--login", "-c", "pyenv install 2.7.15"]
-
-FROM install-python as set-python-version
-WORKDIR /
-RUN ["/bin/bash", "--login", "-c", "pyenv global 2.7.15"]
-
-FROM set-python-version as install-oer-exports
+FROM install-python as install-oer-exports
 WORKDIR /
 RUN apt-get update
-#RUN apt-get -y install python-virtualenv                   # for the following commands
+RUN apt-get -y install python-virtualenv                   # for the following commands
 RUN apt-get -y install libxslt1-dev libxml2-dev zlib1g-dev # For lxml to compile
 RUN apt-get -y install librsvg2-bin                        # To convert SVG and math to PNG
 RUN apt-get -y install otf-stix
