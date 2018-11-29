@@ -95,6 +95,8 @@ RUN apt-get -y install python-opencv                  # for unittests
 RUN apt-get -y install python-dev                     # for unittest dependency builds
 RUN apt-get -y install memcached                      # for exercise, equation, and svg caching
 RUN apt-get -y install shellcheck                     # missing from oer.exports README.md
+RUN apt-get -y install sudo                           # ./script uses sudo
+RUN apt-get -y install jq                             # required by ./script/fetch-book
 
 FROM install-oer-exports as install-yarn
 WORKDIR /
