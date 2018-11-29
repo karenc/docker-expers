@@ -98,12 +98,8 @@ RUN apt-get -y install shellcheck                     # missing from oer.exports
 
 FROM install-oer-exports as install-yarn
 WORKDIR /
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-RUN printf '%s\n' 7 a 'export NVM_DIR="$HOME/.nvm"' . wq | ed ~/.bashrc
-RUN printf '%s\n' 8 a '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' . wq | ed ~/.bashrc
-RUN printf '%s\n' 9 a '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' . wq | ed ~/.bashrc
-RUN ["/bin/bash", "--login", "-c", "nvm install 6.14.4"]
-RUN ["/bin/bash", "--login", "-c", "npm install -g yarn"]
+RUN curl -o - https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+RUN /bin/bash -c '. $HOME/.nvm/nvm.sh && nvm install 6.14.4 && npm install -g yarn'
 
 FROM install-yarn as install-princexml
 ENV PRINCE=prince-11.4-ubuntu18.04-amd64
