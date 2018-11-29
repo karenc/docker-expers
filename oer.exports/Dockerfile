@@ -130,3 +130,6 @@ RUN wget http://www.princexml.com/download/$PRINCE_TAR \
   && ./install.sh \
   && cd .. \
   && rm -r $PRINCE
+
+COPY ./oer.exports /repos/oer.exports
+WORKDIR /repos/oer.exports/
