@@ -29,8 +29,6 @@ RUN apt-get -y install make
 RUN apt-get -y install build-essential
 RUN apt-get -y install libx11-dev
 RUN apt-get -y install libicu-dev
-## from: https://github.com/GoogleChrome/puppeteer/issues/404
-RUN apt-get -y install libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 libgconf2-4 libasound2 libatk1.0-0 libgtk-3-0
 RUN apt-get -y install libxml2-utils
 RUN apt-get -y install libxslt1-dev libxml2-dev zlib1g-dev # For lxml to compile
 RUN apt-get -y install xsltproc                       # for generating epub
