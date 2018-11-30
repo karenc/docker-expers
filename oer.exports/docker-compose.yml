@@ -1,0 +1,25 @@
+# To create a docker image with oer.exports:
+#   docker-compose build
+#
+# To start the container:
+#   docker-compose run oerexports /bin/bash
+#
+# ./oer.exports is mounted in the container for development, so that we can get
+# all the files in the host when we finish generating pdfs in the container.
+#
+# To run the code:
+#   ./script/fetch-html statistics
+#   ./script/build-pdf statistics
+#
+# You should find statistics.pdf in ./oer.exports/out/ if the commands complete
+# successfully.
+
+version: '3.2'
+services:
+  oerexports:
+    build: .
+    image: openstax/oer.exports
+    volumes:
+      - type: bind
+        source: ./oer.exports
+        target: /repos/oer.exports
