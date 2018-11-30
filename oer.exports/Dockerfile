@@ -116,3 +116,6 @@ RUN wget http://www.princexml.com/download/$PRINCE_TAR \
 
 COPY ./oer.exports /repos/oer.exports
 WORKDIR /repos/oer.exports/
+
+COPY ./docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
