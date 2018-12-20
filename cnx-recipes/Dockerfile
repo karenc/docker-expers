@@ -19,6 +19,7 @@
 
 FROM ubuntu:latest as baseline
 WORKDIR /
+RUN mkdir .ssh && chmod 700 .ssh
 RUN apt-get update
 RUN apt-get -y install curl
 RUN apt-get -y install ed
@@ -32,6 +33,7 @@ RUN apt-get -y install libicu-dev
 RUN apt-get -y install libxml2-utils
 RUN apt-get -y install libxslt1-dev libxml2-dev zlib1g-dev # For lxml to compile
 RUN apt-get -y install xsltproc                       # for generating epub
+RUN apt-get -y install unzip                          # required by fetch-html
 
 FROM baseline as install-python
 WORKDIR /
