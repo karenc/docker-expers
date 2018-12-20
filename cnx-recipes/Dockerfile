@@ -49,3 +49,5 @@ RUN apt-get install -y nodejs
 FROM install-node as install-yarn
 WORKDIR /
 RUN npm install -g yarn
+COPY ./cnx-recipes /repos/cnx-recipes
+WORKDIR /repos/cnx-recipes/

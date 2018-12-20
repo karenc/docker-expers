@@ -37,3 +37,6 @@ RUN apt-get -y install python-pip
 RUN pip install virtualenv
 RUN mkdir ~/.virtualenvs
 RUN pip install virtualenvwrapper
+
+COPY ./cnx-easybake /repos/cnx-easybake
+WORKDIR /repos/cnx-easybake/
