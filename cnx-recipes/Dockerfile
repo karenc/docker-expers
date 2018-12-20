@@ -49,3 +49,6 @@ RUN /bin/bash -c '. $HOME/.nvm/nvm.sh && nvm install $(cat .node-version)'
 
 FROM install-node as install-yarn
 RUN /bin/bash -c '. $HOME/.nvm/nvm.sh && npm install -g yarn'
+
+COPY ./docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
