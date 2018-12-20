@@ -39,7 +39,8 @@ WORKDIR /
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
 
-FROM install-node as npm-install
 COPY ./baked-pdf /repos/baked-pdf
-WORKDIR /repos/baked-pdf/typeset
+WORKDIR /repos/baked-pdf/
 RUN npm install
+COPY ./docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
