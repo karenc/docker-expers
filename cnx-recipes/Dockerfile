@@ -42,12 +42,10 @@ RUN mkdir ~/.virtualenvs
 RUN pip install virtualenvwrapper
 
 FROM install-python as install-node
-WORKDIR /
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
-RUN apt-get install -y nodejs
-
-FROM install-node as install-yarn
-WORKDIR /
-RUN npm install -g yarn
 COPY ./cnx-recipes /repos/cnx-recipes
 WORKDIR /repos/cnx-recipes/
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+RUN /bin/bash -c '. $HOME/.nvm/nvm.sh && nvm install $(cat .node-version)'
+
+FROM install-node as install-yarn
+RUN /bin/bash -c '. $HOME/.nvm/nvm.sh && npm install -g yarn'
