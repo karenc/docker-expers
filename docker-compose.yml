@@ -1,0 +1,25 @@
+# To create docker images with cnx pipeline:
+#   docker-compose build
+
+version: '3.2'
+services:
+  recipes:
+    build: cnx-recipes
+    image: openstax/cnx-recipes
+    volumes:
+      - ./cnx-recipes/cnx-recipes:/repos/cnx-recipes
+      - ./out/data:/repos/cnx-recipes/data
+      - ./out/resources:/repos/cnx-recipes/resources
+
+  bakedpdf:
+    build: cnx-bakedpdf
+    image: openstax/cnx-bakedpdf
+    volumes:
+      - ./cnx-bakedpdf/baked-pdf:/repos/baked-pdf
+      - ./out:/out
+
+  princexml:
+    build: princexml
+    image: openstax/princexml
+    volumes:
+      - ./out:/out
