@@ -8,6 +8,8 @@ services:
     image: openstax/cnx-recipes
     volumes:
       - ./cnx-recipes/cnx-recipes:/repos/cnx-recipes
+      - ./fetch_book_rsa:/root/.ssh/id_rsa:ro
+      - ./ssh_config:/etc/ssh/ssh_config:ro
       - ./out/data:/repos/cnx-recipes/data
       - ./out/resources:/repos/cnx-recipes/resources
 
