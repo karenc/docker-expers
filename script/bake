@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -x
+docker-compose run --rm recipes /bin/bash -c "./script/bake-book $1" || exit 1
+if [ -n "$STYLE" ]
+then
+    STYLE="-c /out/$STYLE"
+fi
+if [ -z "$MATH_FORMAT" ]
+then
+    MATH_FORMAT='svg'
+fi
+docker-compose run --rm bakedpdf /bin/bash -c "node start -i /out/data/$1-baked.xhtml -o /out/data/$1-baked2.xhtml $STYLE -f $MATH_FORMAT" || exit 1
+docker-compose run --rm princexml prince -v --output="/out/$1.pdf" --style=/out/mjx-line.css "/out/data/$1-baked2.xhtml"
