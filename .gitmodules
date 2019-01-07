@@ -1,0 +1,13 @@
+[submodule "cnx-bakedpdf/baked-pdf"]
+	path = cnx-bakedpdf/baked-pdf
+	url = git@github.com:openstax/baked-pdf.git
+[submodule "cnx-easybake/cnx-easybake"]
+	path = cnx-easybake/cnx-easybake
+	url = git@github.com:openstax/cnx-easybake.git
+[submodule "cnx-recipes/cnx-recipes"]
+	path = cnx-recipes/cnx-recipes
+	url = git@github.com:openstax/cnx-recipes.git
+	branch = fetch-html-resources
+[submodule "oer.exports/oer.exports"]
+	path = oer.exports/oer.exports
+	url = git@github.com:openstax/oer.exports.git
