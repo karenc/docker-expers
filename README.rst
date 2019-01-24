@@ -14,7 +14,7 @@ ubuntu::
 
 Clone this repository and set up the submodules::
 
-    git clone -b karen git@github.com:karenc/docker-expers.git
+    git clone -b karen https://github.com/karenc/docker-expers.git
     cd docker-expers
     git submodule init
     git submodule update
